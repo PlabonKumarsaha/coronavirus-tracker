@@ -23,7 +23,14 @@ public class CoronaVirusDataService {
 
 
     private String VIRUS_DATA_URL = "raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv";
+
     private List<LocationStat> allStats = new ArrayList<>();
+
+    public List<LocationStat> getAllStats() {
+        return allStats;
+    }
+
+
 //exceute this method after a service is done calling
     @PostConstruct
     //used to make cronoci expression..like time delay..if you put every sceond then this method
@@ -53,7 +60,11 @@ public class CoronaVirusDataService {
 
             locationStat.setState(record.get("Provinces/State"));
             locationStat.setState(record.get("Provinces/State"));
-            locationStat.setLatestTotalcases(Integer.parseInt(record.get(record.size() - 1)));
+            int latestDayCases = Integer.parseInt(record.get(record.size() - 1));
+            int previousDayCases = Integer.parseInt(record.get(record.size() - 2));
+
+            locationStat.setLatestTotalcases(latestDayCases);
+            locationStat.setDiffFromPreviousDay(latestDayCases-previousDayCases);
 
             System.out.println(locationStat);
             newStats.add(locationStat);
@@ -61,6 +72,7 @@ public class CoronaVirusDataService {
         }
 
         this.allStats = newStats;
+
 
     }
 }

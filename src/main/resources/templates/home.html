@@ -1,2 +1,55 @@
-<h1>Corona virus tracker</h1>
 
+
+<!-- use tymleaf syntax to show the model data -->
+
+
+
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Corona virus tracker</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    />
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Coronaviurs tracker Application</h1>
+<p>This application enlists the current number of reported cases all overthe glove </p>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4"th:text="${totalReportedCases}"></h1>
+        <p class="lead">Total cases reported as of today</p>
+    </div>
+</div>
+
+
+<table class="table">
+    <tr>
+        <th>State</th>
+        <th>Country</th>
+        <th>Total cases reported</th>
+        <th>Changes since the last day</th>
+
+    </tr>
+    <tr th:each="locationStat : ${locationStats}">
+        <td th:text="${locationStat.state}"></td>
+        <td th:text="${locationStat.country}"></td>
+        <td th:text="${locationStat.latestTotalcases}">0</td>
+        <td th:text="${locationStat.diffFromPreviousDay}">0</td>
+
+    </tr>
+</table>
+
+</div>
+
+</body>
+
+</html>
