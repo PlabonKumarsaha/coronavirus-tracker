@@ -13,4 +13,4 @@
 
 ## Output
 
-![Image description](https://github.com/PlabonKumarsaha/coronavirus-tracker/blob/master/Screenshot%20(57).png)
+![Image description](https://github.com/PlabonKumarsaha/coronavirus-tracker/blob/master/GUI.png)
