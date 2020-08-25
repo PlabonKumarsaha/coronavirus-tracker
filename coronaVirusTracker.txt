@@ -1,0 +1,31 @@
+# Spring boot steps
+
+1.Get the data from the link and parse it.
+
+2.Create a Service name CoronaVirusDataService which has a method of fetchVirusData.
+This will call a HTTPclient insatnce and HttpRequest. Make the fetchVirusdata method a
+@PostConstruct..So when the service is instanciated thhis method will be called. That's why postConst annotation is 
+used. This will load the csv file.
+
+3. we will use a 3rd party CSV parsing library. we passed the body of csv in that library.
+Now we want the system to be updated on regular basis. So we use an annotaion call
+@Scheduled which will make the method fetchVirusData updated in a fixed delay. an annotation named
+@Enabled scduling must be done as well to let the main method know anout the sceduling.
+
+
+4. Now we create an model name LocationStats which has the members name state,country,latest total in the class.These will have getter and setter.
+Now we make a list of that model class in the service.
+
+5. Now we will be making a controller which will help us get an to show an url to show in the UIs. Create a home template.
+With the help of controller we will render the UI component..We use @GetMapping to return the home page(works for thymleaf).
+
+6.Controller is used for rendering the desired pages. Now in the Controller we are going to autowire the CoronaVirusDataSer instance to use it to show the data.
+
+Spring home(Model model){
+
+model.addAttribute("locationStat",CoronaVirusService.getAllstat());
+
+// now we will loop through the allstat List with thymleaf
+}
+
+7. Now we will loop through the allstat in thymleaf ang get all the values.
